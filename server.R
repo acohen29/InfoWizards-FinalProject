@@ -1,10 +1,24 @@
 library(shiny)
 library(httr)
+library(jsonlite)
 source("key.R")
 
 func <- function(input, output) {
-  #url <- paste0("https://api.mysportsfeeds.com/v1.2/pull/nfl/", input$season, "/player_injuries.csv")
-  #output$table <- renderTable(GET(url), add_headers(Authorization= paste("Basic", msf_credentials)))
+  reactive <- reactiveValues()
+  reactive$result <- data.frame("")
+  observeEvent(input$season, {
+    url <- paste0("https://api.mysportsfeeds.com/v1.2/pull/nfl/", input$season, "-regular/player_injuries.json")
+    response <- GET(url, add_headers('Content-Type' = "application/json"),
+                    authenticate(msf_user, msf_pass))
+    
+    content <- content(response, "text", encoding = "UTF-8")
+    result <- fromJSON(content, flatten = T)
+    reactive$result <- result$playerinjuries$playerentry
+  })
+  output$players <- paste(reactive$result$player.FirstName, reactive$result$player.LastName)
+  output$table <- renderDataTable(reactive$result)
 }
 
 shinyServer(func)
+
+

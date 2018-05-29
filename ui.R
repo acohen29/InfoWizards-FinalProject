@@ -5,10 +5,10 @@ ui <- fluidPage(
   titlePanel("Title"),
   sidebarLayout(
     sidebarPanel(
-      textInput('season', "Enter Season (Ex: '2016-2017')")
+      radioButtons('season', "Choose season by year", c("2014-2015", "2015-2016", "2016-2017"))
     ),
     mainPanel(
-      tableOutput('table')
+      dataTableOutput('table')
     )
   )
 )
