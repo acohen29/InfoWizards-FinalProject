@@ -1,5 +1,6 @@
 library(shiny)
 library(httr)
+library(dplyr)
 library(jsonlite)
 source("key.R")
 
@@ -13,9 +14,11 @@ func <- function(input, output) {
     
     content <- content(response, "text", encoding = "UTF-8")
     result <- fromJSON(content, flatten = T)
-    reactive$result <- result$playerinjuries$playerentry
+    reactive$result <- result$playerinjuries$playerentry %>%
+      mutate(Name = paste(player.FirstName, player.LastName)) %>%
+      select(Name, player.ID, injury, team.Name, player.Position)
   })
-  output$players <- paste(reactive$result$player.FirstName, reactive$result$player.LastName)
+
   output$table <- renderDataTable(reactive$result)
 }
 
