@@ -12,6 +12,7 @@ ui <- fluidPage(
       h2("Step 1: Choose Season Year"),
       h2("Step 2: Choose one of the following positions"),
       h4(textOutput('positions')),
+      plotOutput("plot"),
       tableOutput('join_table')
     )
   )
