@@ -7,17 +7,18 @@ source("key.R")
 
 func <- function(input, output) {
   reactive <- reactiveValues()
-  reactive$injury_table <- data.frame("")
-  reactive$team_table <- data.frame("")
-  reactive$joined <- data.frame("")
-  reactive$positions <- c("")
-  reactive$plot <- ggplot()
-  
   
   #============================================================================
   # Get manipulations to player salary datset
   #============================================================================
 
+  salary_result <- GET(paste0("https://api.mysportsfeeds.com/v1.2/pull/nfl/2016-2017-regular/active_players.json"), 
+                       add_headers('Content-Type' = "application/json"),
+                       authenticate(msf_user, msf_pass)) %>%
+    content("text", encoding = "UTF-8") %>%
+    fromJSON(flatten = T)
+  reactive$salary <- salary_result$active_players$playerentry %>%
+    select(player.ID, )
   
   #============================================================================
   # GETS the API Databases when the desired year changes
