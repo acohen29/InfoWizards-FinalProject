@@ -2,6 +2,7 @@ library(shiny)
 library(httr)
 library(dplyr)
 library(jsonlite)
+library(ggplot2)
 source("key.R")
 
 func <- function(input, output) {
