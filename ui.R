@@ -12,8 +12,7 @@ ui <- fluidPage(
       h2("Step 1: Choose Season Year"),
       h2("Step 2: Choose one of the following positions"),
       h4(textOutput('positions')),
-      tableOutput('injury_table'),
-      tableOutput('team_table')
+      tableOutput('join_table')
     )
   )
 )

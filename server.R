@@ -8,11 +8,12 @@ func <- function(input, output) {
   reactive <- reactiveValues()
   reactive$injury_table <- data.frame("")
   reactive$team_table <- data.frame("")
+  reactive$joined <- data.frame("")
   reactive$positions <- c("")
   
   #=====================================================#
   # GETS the API Databases when the desired year changes#
-  #=====================================================#
+  #=====================================================
   
   observeEvent(input$season, {
     base_url <- paste0("https://api.mysportsfeeds.com/v1.2/pull/nfl/", input$season, "-regular")
@@ -33,10 +34,10 @@ func <- function(input, output) {
       select(rank, team.ID, team.Name, team.Abbreviation)
     
     reactive$positions <- as.vector(unique(reactive$injury$player.Position))
+    reactive$joined <- left_join(reactive$injury, reactive$standing, by = "team.ID")
     
     if (input$position_choice != "") {
       reactive$injury_table <- filter(reactive$injury, player.Position == input$position_choice)
-      teams <- as.vector(unique(reactive$table$team_ID))
     } else {
       reactive$injury_table <- reactive$injury
       reactive$team_table <- reactive$standing
@@ -50,7 +51,6 @@ func <- function(input, output) {
   observeEvent(input$position_choice, {
     if (input$position_choice != "") {
       reactive$injury_table <- filter(reactive$injury, player.Position == input$position_choice)
-      teams <- as.vector(unique(reactive$table$team_ID))
     } else {
       reactive$injury_table <- reactive$injury
       reactive$team_table <- reactive$standing
@@ -60,6 +60,7 @@ func <- function(input, output) {
   output$positions <- renderText(reactive$positions)
   output$injury_table <- renderTable(reactive$injury_table)
   output$team_table <- renderTable(reactive$team_table)
+  output$join_table <- renderTable(reactive$joined)
 }
 
 shinyServer(func)
