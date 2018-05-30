@@ -23,8 +23,7 @@ ui <- navbarPage(
     sidebarLayout(
       sidebarPanel(
         radioButtons("season", "Choose season by year",
-                     c("2012-2013" = "2012-2013-regular", "2013-2014" = "2013-2014-regular",
-                       "2014-2015" = "2014-2015-regular", "2015-2016" = "2015-2016-regular",
+                     c("2014-2015" = "2014-2015-regular", "2015-2016" = "2015-2016-regular",
                        "2016-2017" = "2016-2017-regular", "Latest" = "latest")),
         textInput("position_choice", "Choose position", placeholder = "All Positions")
       ),
