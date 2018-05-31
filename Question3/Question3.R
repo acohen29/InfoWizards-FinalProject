@@ -4,9 +4,8 @@ library("dplyr")
 library("jsonlite")
 library("ggplot2")
 library("plotly")
-library("magrittr")
-library("RCurl")
-library("plotly")
+library("quantreg")
+library("gganimate")
 source("key.R")
 
 # Reads in csv files containing data for each player, each game per season
@@ -15,7 +14,7 @@ fantasy_2016 <- read.csv(file = "2016_2017_Fantasy.csv", stringsAsFactors = FALS
 fantasy_2015 <- read.csv(file = "2015_2016_Fantasy.csv", stringsAsFactors = FALSE)
 fantasy_2014 <- read.csv(file = "2014_2015_Fantasy.csv", stringsAsFactors = FALSE)
 
-
+vector <- c(2, 3, 4)
 # Creates 2 vectors by extracting values from 2 cetain columns
 
 # For 2017
@@ -55,11 +54,43 @@ rsq(salary_2014, points_2014)
 
 # Code for question 3
 
-ggplot(data = fantasy_2017, aes(X.Salary, X.Fantasy.Points, colour = "smoke")) +
-  geom_point(size = 1, shape = 3) +
-  geom_quantile(quantiles = 0.5, size = 0.5, alpha = 0.5) +
-  geom_smooth(method = "lm", method.args = list(family = poisson), aes(color = "poisson"), se = FALSE) +
-  geom_smooth(method = MASS::glm.nb, aes(color = "NB"), se = FALSE)
+theme_set(theme_bw())  # pre-set the bw theme.
+g <- ggplot(fantasy_2017, aes(X.Salary, X.Fantasy.Points))
+g + geom_count(col="tomato3", show.legend=F) +
+  labs(subtitle="Cost vs Points", 
+       y="points", 
+       x="Price", 
+       title="Counts Plot")
+
+theme_set(theme_bw())  # pre-set the bw theme.
+g <- ggplot(fantasy_2016, aes(X.Salary, X.Fantasy.Points))
+g + geom_count(col="tomato3", show.legend=F) +
+  labs(subtitle="Cost vs Points", 
+       y="points", 
+       x="Price", 
+       title="Counts Plot")
+
+theme_set(theme_bw())  # pre-set the bw theme.
+g <- ggplot(fantasy_2015, aes(X.Salary, X.Fantasy.Points))
+g + geom_count(col="tomato3", show.legend=F) +
+  labs(subtitle="Cost vs Points", 
+       y="points", 
+       x="Price", 
+       title="Counts Plot")
+
+theme_set(theme_bw())  # pre-set the bw theme.
+g <- ggplot(fantasy_2014, aes(X.Salary, X.Fantasy.Points))
+g + geom_count(col="tomato3", show.legend=F) +
+  labs(subtitle="Cost vs Points", 
+       y="points", 
+       x="Price", 
+       title="Counts Plot")
+
+
+
+
+
+
 
 
 
