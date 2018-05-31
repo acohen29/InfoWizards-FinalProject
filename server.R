@@ -13,7 +13,7 @@ func <- function(input, output) {
     select(name, country.etc) %>%
     left_join(data.frame(abbr = state.abb, state = state.name, stringsAsFactors = F), by = c("country.etc" = "abbr"))
   city_to_state$name <- substr(city_to_state$name, 0, nchar(city_to_state$name) - 3)
-  
+
   #============================================================================
   # GETS the API Databases when the desired year changes
   #============================================================================
@@ -94,10 +94,10 @@ func <- function(input, output) {
   observeEvent({
     input$season
     input$map_selection}, {
-      
+
       us_map <- map_data("state")
       us_map$region <- stringr::str_to_title(us_map$region)
-      
+
       if (input$map_selection == 1) {
         map <- left_join(reactive$standing, city_to_state, by = c("team.City" = "name"))
         map <- left_join(us_map, map, by = c("region" = "state"))
@@ -130,7 +130,7 @@ func <- function(input, output) {
           )
       }
     })
-  
+
   #============================================================================
   # Outputs
   #============================================================================
@@ -139,6 +139,7 @@ func <- function(input, output) {
   output$plot <- renderPlot(reactive$plot)
   output$q1_analysis <- renderText(paste(q1_analysis_1, reactive$injured_mean, q1_analysis_2))
   output$map <- renderPlot(reactive$map)
+  output$q2_analysis <- renderText(paste(q2_analysis_1, q2_analysis_2, q2_analysis_3, q2_analysis_4))
 
 }
 

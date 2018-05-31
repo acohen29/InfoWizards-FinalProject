@@ -57,7 +57,8 @@ ui <- navbarPage(
              mainPanel(
                plotOutput('map')
              )
-           )
+           ),
+           textOutput("q2_analysis")
          ),
 
   #============================================================================
