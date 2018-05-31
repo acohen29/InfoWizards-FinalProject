@@ -120,15 +120,14 @@ func <- function(input, output) {
                                           especially since each of the other teams who had running 
                                           backs go down with an injury were ranked fairly low. The 
                                           importance of what we found was that teams who had injuries 
-                                          at the RB position were `r mean - r mean` below the rest of 
+                                          at the RB position were on average 4 points below the rest of 
                                           the league in terms of rank indicating that they were at a 
                                           disadvantage. While this experiment was performed with the 
-                                          utmost caution to avoid bias, there are several factors that 
-                                          should be mentioned as important. The sample size upon which the 
-                                          t-test was taken was not very big only 4 players were listed according 
-                                          to API that we used. Additionally, the NFL consists of only 32 which means 
-                                          it is not exactly an ideally sized data set. However, the data that we 
-                                          have found indicates an interesting trend in terms of the importance 
+                                          utmost caution to avoid bias, there are a few issues that 
+                                          should be mentioned. The NFL consists of only 32 which means 
+                                          it is not exactly an ideally sized data set, and the number of teams who had running back 
+                                          injuries was only 4 according to the API data we collected. 
+                                          However, the data that we have found indicates an interesting trend in terms of the importance 
                                           of running backs."))
   
 }
