@@ -132,9 +132,9 @@ func <- function(input, output) {
     us_map$region <- stringr::str_to_title(us_map$region)
 
     if (input$map_selection == 1) {
-      map <- left_join(reactive$standing, city_to_state, by = c("team.City" = "name"))
-      map <- left_join(us_map, map, by = c("region" = "state"))
-      reactive$map <- ggplot(map) +
+      reactive$map_data <- left_join(reactive$standing, city_to_state, by = c("team.City" = "name"))
+      reactive$map_data <- left_join(us_map, reactive$map_data, by = c("region" = "state"))
+      reactive$map <- ggplot(reactive$map) +
         geom_polygon(mapping = aes(
           x = long, y = lat, group = region,
           fill = rank, color = "black"
@@ -187,8 +187,9 @@ func <- function(input, output) {
   output$q1_analysis <- renderText(paste(q1_analysis_1, reactive$injured_mean, q1_analysis_2))
   output$map <- renderPlot(reactive$map)
   output$q2_analysis <- renderText(paste(
-    q2_analysis_1, q2_analysis_2, q2_analysis_3, q2_analysis_4,
-    q2_analysis_5, q2_analysis_6
+    q2_analysis_1, "10", q2_analysis_2, "6", 
+    q2_analysis_3, "4",q2_analysis_4, "2",
+    q2_analysis_5, "0", q2_analysis_6
   ))
   output$player <- renderTable(reactive$player)
 }
