@@ -66,7 +66,7 @@ ui <- navbarPage(
   #============================================================================
   
   tabPanel("Fantasy Price vs Points",
-           titlePanel("Should you cash out on pricey"),
+           titlePanel("Should you cash out on pricey players"),
            sidebarLayout(
              sidebarPanel(
                radioButtons("season", "Choose season by year",
