@@ -49,3 +49,29 @@ it is not exactly an ideally sized data set, and the number of teams who had run
 injuries was only 4 according to the API data we collected.
 However, the data that we have found indicates an interesting trend in terms of the importance
 of running backs."
+
+q2_analysis_1 <- "The second question we wanted to ask was: 
+How does salary relate to team performance. To do 
+this we looked at salary data for each position and how 
+it compared to the league average salary. The position that 
+we were specifically interested in was RB’s given that we 
+had established a potential trend indicating that they were 
+very important to a team’s overall success. What we found was 
+that running backs earned an average of"
+
+q2_analysis_2 <- "in 2017 compared to the league average salary of "
+
+q2_analysis_3 <- "While not conclusive, the difference of "
+
+q2_analysis_4 <- "seems to indicate that the league highly values 
+a rushing attack. Given the trend that shows that running backs appear
+to be significant players in terms of indicating a team’s success, this 
+resulting trend would seem to make sense. The importance of this trend is 
+that it indicates that it indicates a potential correlation between a players 
+importance in getting wins, and their salary. While this trend might seem 
+obvious, it raised some questions. The most interesting of these questions 
+is whether poor spending might be related poor team performance. 
+Unfortunately, the API we used to complete this project does not presently 
+have sufficient data to evaluate this potential trend. The above graphic can 
+also be altered to see how other positions average salaries compares to the 
+league average."
