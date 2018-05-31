@@ -139,7 +139,8 @@ func <- function(input, output) {
   output$plot <- renderPlot(reactive$plot)
   output$q1_analysis <- renderText(paste(q1_analysis_1, reactive$injured_mean, q1_analysis_2))
   output$map <- renderPlot(reactive$map)
-  output$q2_analysis <- renderText(paste(q2_analysis_1, q2_analysis_2, q2_analysis_3, q2_analysis_4))
+  output$q2_analysis <- renderText(paste(q2_analysis_1, q2_analysis_2, q2_analysis_3, q2_analysis_4, 
+                                         q2_analysis_5, q2_analysis_6))
 
 }
 

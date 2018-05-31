@@ -1,20 +1,22 @@
 landing <- "Welcome to the Info Wizards Football Analysis Program.
-             This program allows you to explore data on football injuries, team success,
-             salaries and the value of NFL draft picks. Data for this project was courtesy
-             of https://www.mysportsfeeds.com. The goal of this project is to display the
-             importance of data as it relates to injuries and the management of a professional
-             football team. To display this, we chose to break the information down into several
+             This program allows you to explore data on the NFL relating to injures, team location as it realates to performance
+             and fantasy data relating to the cost of a player. Data for this project was courtesy
+             of https://www.mysportsfeeds.com. The goal of this project was to analyze what factors may play into team success and
+             how team success is valued. To display this, we chose to break the information down into several
              distinct categories for easier user accessibility. The first section presents
              data on NFL injuries and how those affect team performance. The overall goal of
-             this section is to show the importance of particular positions for a football team
-             as it relates to team performance. The second section presents data on NFL salaries
-             based on positions. The first tab displayed how injuries affected team performance,
-             the second tab builds upon this idea and examines how salaries relate to positional
-             impacts on team performance. Finally, the third section of this report focuses on
-             draft picks and how drafting players affects team performance. The report is crafted
-             in such a way as to make these sections distinct. The different sections can be
-             found under their corresponding tabs at the top of the page. You are presently at the
-             Homepage."
+             this section is to show the importance of particular positions for a football team. This
+             displays positional importance based on team performance after an injury. The second section 
+             presents data injuries and ranks by state. This section presents data on other factors that 
+             may influence a team's success, specifically geographical location. It is often said that 
+             football is the only sport where bad weather only makes the teams play harder. Our goal in this
+             section was to see if geographical location (paired to weather), has any affect on team performance.
+             Finally, the third section of this report focuses on
+             fantasy football players and how their draft price compares to their actual point output. This section
+             displays how players are valued. We wanted to examine this section in particular to establish if
+             players were being valued correctly by fantasy owners, and whether the prices that were paid for fantasy players
+             were connected to the value of the player on the teams performance as a whole and were connected to 
+             the states that were advantageous (e.g. few injuries and high rank). We hope you enjoy the following report!"
 
 q1_analysis_1 <- "A note to the user: The following analysis is valid only when the year 2016-2017 is selected
 and the chosen position is RB. The question we set out to answer for this section was:
@@ -51,28 +53,21 @@ injuries was only 4 according to the API data we collected.
 However, the data that we have found indicates an interesting trend in terms of the importance
 of running backs."
 
-q2_analysis_1 <- "The second question we wanted to ask was: 
-How does salary relate to team performance. To do 
-this we looked at salary data for each position and how 
-it compared to the league average salary. The position that 
-we were specifically interested in was RB’s given that we 
-had established a potential trend indicating that they were 
-very important to a team’s overall success. What we found was 
-that running backs earned an average of"
+q2_analysis_1 <- "A note to the user: the following analysis is valid only when the year 2016-2017
+is selected. This section is designed to give the user an understanding of how geographical location
+is related to rank and injuries. Our hypothesis was that states in which were likely to experiance 
+harsher winters, (e.g northern states) were more likely to have injuries than states that experianced
+very mild winters. To analyze this, we looked at a pair of states, Wisconsin and Texas. What we found
+was that the average rank in Wisconsin was "
 
-q2_analysis_2 <- "in 2017 compared to the league average salary of "
+q2_analysis_2 <- "compared to an average rank in Texas of "
 
-q2_analysis_3 <- "While not conclusive, the difference of "
+q2_analysis_3 <- ".While not conclusive, the difference of "
 
-q2_analysis_4 <- "seems to indicate that the league highly values 
-a rushing attack. Given the trend that shows that running backs appear
-to be significant players in terms of indicating a team’s success, this 
-resulting trend would seem to make sense. The importance of this trend is 
-that it indicates that it indicates a potential correlation between a players 
-importance in getting wins, and their salary. While this trend might seem 
-obvious, it raised some questions. The most interesting of these questions 
-is whether poor spending might be related poor team performance. 
-Unfortunately, the API we used to complete this project does not presently 
-have sufficient data to evaluate this potential trend. The above graphic can 
-also be altered to see how other positions average salaries compares to the 
-league average."
+q2_analysis_4 <- "seems to indicate that there is a potential correlation between the states location
+and the average rank of the team within the state. Further more, we examined the same two states in terms
+of the number of injuries. What we found that Wisconsin had "
+
+q2_analysis_5 <- "injuries while Texas had "
+
+q2_analysis_6 <- "injuries. Overall these results would appear to indicate that "
