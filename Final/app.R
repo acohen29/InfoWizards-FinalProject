@@ -1,3 +1,4 @@
+
 library(shiny)
 library(httr)
 library(shinythemes)
@@ -46,38 +47,35 @@ ui <- navbarPage(
   
   tabPanel("Question 2",
            titlePanel("Question 2")
-           
   ),
   
   #============================================================================
   # Question 3
   #============================================================================
-  
+
   tabPanel("Question 3",
-           titlePanel("Question 3"),
+           titlePanel("Does fantasy player price equate player value?"),
            sidebarLayout(
              sidebarPanel(
-               selectInput("year", 
-                           "Please select a year:",
-                           choices = c("2014-2015" = "2014-2015-regular", "2015-2016" = "2015-2016-regular",
-                                       "2016-2017" = "2016-2017-regular", "Latest" = "latest"))
+               checkboxGroupInput("Year", "Choose season by year",
+                            c("2014-2015" = "2014-2015-regular", "2015-2016" = "2015-2016-regular",
+                              "2016-2017" = "2016-2017-regular", "Latest" = "latest")),
+               textInput("position_choice", "Choose position", placeholder = "All Positions")
              ),
-           
-           mainPanel(
-             h3("Step 1: Choose Season Year"),
-             h3("Step 2: Choose one of the following positions"),
-             h4(textOutput("positions")),
-             br(),
-             plotOutput("plot")
-           )
-  ),
-  br(),
-  textOutput("q1_analysis")
-  
+             mainPanel(
+               h3("Step 1: Choose Season Year"),
+               h3("Step 2: Choose one of the following positions"),
+               h4(textOutput("positions")),
+               br(),
+               plotOutput("plot")
+             )
            ),
-  
+           br(),
+           textOutput("q1_analysis")
+  ),
   theme = shinytheme("flatly")
 )
 
 shinyUI(ui)
 runApp()
+getwd()

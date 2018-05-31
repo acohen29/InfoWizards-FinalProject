@@ -4,6 +4,8 @@ library("dplyr")
 library("jsonlite")
 library("ggplot2")
 library("plotly")
+library("quantreg")
+library("gganimate")
 source("key.R")
 
 # Reads in csv files containing data for each player, each game per season
