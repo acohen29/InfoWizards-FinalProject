@@ -10,6 +10,10 @@ source("analysis.R")
 func <- function(input, output) {
   reactive <- reactiveValues()
 
+  # ============================================================================
+  # Initialization for Plots and Maps
+  # ============================================================================
+  
   city_to_state <- us.cities %>%
     select(name, country.etc) %>%
     left_join(data.frame(abbr = state.abb, state = state.name, stringsAsFactors = F), by = c("country.etc" = "abbr"))
@@ -102,7 +106,7 @@ func <- function(input, output) {
       mean()
 
     # ========================================================================
-    # Code for Question 1 Plot
+    # Rank to injury plot
     # ========================================================================
 
     reactive$plot <- ggplot(reactive$data_plot_1) +
@@ -122,7 +126,7 @@ func <- function(input, output) {
   })
 
   # ============================================================================
-  # Choice for Map Data Set
+  # Map datasets for both injuries and ranks
   # ============================================================================
   observeEvent({
     input$season_2
@@ -167,7 +171,7 @@ func <- function(input, output) {
   })
 
   # ============================================================================
-  # On plot Click
+  # Returns data from Injury Rank plot on click
   # ============================================================================
 
   observeEvent(input$click, {

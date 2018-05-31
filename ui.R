@@ -11,9 +11,11 @@ ui <- navbarPage(
   # ============================================================================
 
   tabPanel(
-    "Landing",
+    "Welcome",
     mainPanel(
-      titlePanel("Info Wizards Info 201 AC3"),
+      titlePanel("Coorelating NFL Player & Team Success and Value"),
+      h4("Info Wizards Info 201 AC3"),
+      h4("Alex Cohen, Paul Winebrenner, Phillip Quach"),
       p(landing)
     )
   ),
@@ -24,7 +26,7 @@ ui <- navbarPage(
 
   tabPanel(
     "Question 1",
-    titlePanel("Question 1"),
+    titlePanel("Analysis on NFL Player Injuries to Rank"),
     sidebarLayout(
       sidebarPanel(
         radioButtons(
@@ -56,7 +58,7 @@ ui <- navbarPage(
 
   tabPanel(
     "Question 2",
-    titlePanel("Question 2"),
+    titlePanel("Geographical Impact on NFL Player Injuries and Rank"),
     sidebarLayout(
       sidebarPanel(
         radioButtons(

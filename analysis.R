@@ -1,3 +1,9 @@
+# ============================================================================
+# Storage for large texts for use in analysis
+# ============================================================================
+
+
+
 landing <- "Welcome to the Info Wizards Football Analysis Program.
              This program allows you to explore data on the NFL relating to injures, team location as it realates to performance
              and fantasy data relating to the cost of a player. Data for this project was courtesy
