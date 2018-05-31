@@ -70,7 +70,10 @@ of the number of injuries. What we found that Wisconsin had "
 
 q2_analysis_5 <- "injuries while Texas had "
 
-q2_analysis_6 <- "injuries. Overall these results would appear to indicate that "
+q2_analysis_6 <- "injuries. Overall these results would appear to indicate that extreme weather in locations 
+like Green Bay Wisconsin, may have an effect on the team's rank and additionally it would appear that
+the weather may have ahad an effect on the injuries as well. While these trends would need further confirmation
+be be established as fact, this trend may be indicative of a broader corelation."
 
 
 q3_analysis_1 <- "Our Analysis revolved around two variables: 1) how much a player cost 2) how many 
@@ -107,8 +110,8 @@ q3_analysis_3 <- "Despite the fact that there was very little correlation betwee
 conclusion_1 <- "As seen in the previous tabs, we found some interesting correlations in our project.
 While it would be incorrect to state with 100% certainty that all of the results that we have come to
 are guaranteed always to be true, we have found evidence that there may be a correlation between
-player injuries at certain positions and team performance. Unfortunately, we are not able to say with complete
-certianty that there is a correlation between geographical location and team rank or injuries. Interestingly,
+player injuries at certain positions and team performance. We did find a potential correlation between team location
+and rank, in addition to a potential correlation between team location and injuries. Interestingly,
 we found little correlation between player price and their actual point value. This was a surprising result,
 we had expected stars, who fantasy owners paid a lot for, to have a signficant impact in terms of performance.
 However, as stated, we feel that these result may be due to variance and that overall there may be a correlation
