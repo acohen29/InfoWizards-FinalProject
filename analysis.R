@@ -16,7 +16,8 @@ landing <- "Welcome to the Info Wizards Football Analysis Program.
              found under their corresponding tabs at the top of the page. You are presently at the
              Homepage."
 
-q1_analysis_1 <- "The question we set out to answer for this section was:
+q1_analysis_1 <- "A note to the user: The following analysis is valid only when the year 2016-2017 is selected
+and the chosen position is RB. The question we set out to answer for this section was:
                                           How do injures to certain positions impact team success?
                                           One of the most important players on a team is the running back.
                                           A balanced offensive attack is often considered key to getting wins,
