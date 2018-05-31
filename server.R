@@ -132,9 +132,9 @@ func <- function(input, output) {
     us_map$region <- stringr::str_to_title(us_map$region)
 
     if (input$map_selection == 1) {
-      reactive$map_data <- left_join(reactive$standing, city_to_state, by = c("team.City" = "name"))
-      reactive$map_data <- left_join(us_map, reactive$map_data, by = c("region" = "state"))
-      reactive$map <- ggplot(reactive$map) +
+      map <- left_join(reactive$standing, city_to_state, by = c("team.City" = "name"))
+      map <- left_join(us_map, map, by = c("region" = "state"))
+      reactive$map <- ggplot(map) +
         geom_polygon(mapping = aes(
           x = long, y = lat, group = region,
           fill = rank, color = "black"
