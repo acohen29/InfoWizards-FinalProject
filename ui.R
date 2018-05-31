@@ -31,9 +31,9 @@ ui <- navbarPage(
       mainPanel(
         h3("Step 1: Choose Season Year"),
         h3("Step 2: Choose one of the following positions"),
-        h4(textOutput("positions")),
+        h4(textOutput('positions')),
         br(),
-        plotOutput("plot")
+        plotOutput('plot')
       )
     ),
     br(),
@@ -45,8 +45,20 @@ ui <- navbarPage(
   #============================================================================
 
   tabPanel("Question 2",
-           titlePanel("Question 2")
-           ),
+           titlePanel("Question 2"),
+           sidebarLayout(
+             sidebarPanel(
+               radioButtons('map_selection', "Choose which map to view",
+                            c("Map states to league rank" = 1, "Map states to injuries" = 2)),
+               radioButtons("season", "Choose season by year",
+                            c("2014-2015" = "2014-2015-regular", "2015-2016" = "2015-2016-regular",
+                              "2016-2017" = "2016-2017-regular", "Latest" = "latest"))
+             ),
+             mainPanel(
+               plotOutput('map')
+             )
+           )
+         ),
 
   #============================================================================
   # Question 3

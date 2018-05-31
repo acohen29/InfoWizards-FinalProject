@@ -9,18 +9,11 @@ source("analysis.R")
 func <- function(input, output) {
   reactive <- reactiveValues()
 
-  #============================================================================
-  # Get manipulations to player salary datset
-  #============================================================================
-
-#  salary_result <- GET(paste0("https://api.mysportsfeeds.com/v1.2/pull/nfl/2016-2017-regular/active_players.json"),
-#                       add_headers('Content-Type' = "application/json"),
-#                       authenticate(msf_user, msf_pass)) %>%
-#    content("text", encoding = "UTF-8") %>%
-#    fromJSON(flatten = T)
-#  reactive$salary <- salary_result$active_players$playerentry %>%
-#    select(player.ID, )
-
+  city_to_state <- us.cities %>%
+    select(name, country.etc) %>%
+    left_join(data.frame(abbr = state.abb, state = state.name, stringsAsFactors = F), by = c("country.etc" = "abbr"))
+  city_to_state$name <- substr(city_to_state$name, 0, nchar(city_to_state$name) - 3)
+  
   #============================================================================
   # GETS the API Databases when the desired year changes
   #============================================================================
@@ -40,7 +33,8 @@ func <- function(input, output) {
       fromJSON(flatten = T)
     reactive$injury <- injury_result$playerinjuries$playerentry %>%
       mutate(Name = paste(player.FirstName, player.LastName)) %>%
-      select(Name, player.ID, injury, player.Position, team.Name, team.ID)
+      select(Name, player.ID, injury, player.Position, team.Name, team.ID, team.City) %>%
+      mutate(has_injury = T)
 
     reactive$positions <- as.vector(unique(reactive$injury$player.Position))
 
@@ -54,13 +48,13 @@ func <- function(input, output) {
       content("text", encoding = "UTF-8") %>%
       fromJSON(flatten = T)
     reactive$standing <- standings_result$overallteamstandings$teamstandingsentry %>%
-      select(rank, team.ID, team.Name, team.Abbreviation)
+      select(rank, team.ID, team.Name, team.City, team.Abbreviation)
 
     reactive$rank_injury <- left_join(reactive$injury, reactive$standing, by = "team.ID")
   })
 
   #============================================================================
-  # Filters datases when desired position or season changes
+  # Filters datasets when desired position or season changes
   #============================================================================
 
   observeEvent({
@@ -95,12 +89,56 @@ func <- function(input, output) {
     })
 
   #============================================================================
+  # Choice for Map Data Set
+  #============================================================================
+  observeEvent({
+    input$season
+    input$map_selection}, {
+      
+      us_map <- map_data("state")
+      us_map$region <- stringr::str_to_title(us_map$region)
+      
+      if (input$map_selection == 1) {
+        map <- left_join(reactive$standing, city_to_state, by = c("team.City" = "name"))
+        map <- left_join(us_map, map, by = c("region" = "state"))
+        reactive$map <- ggplot(map) +
+            geom_polygon(mapping = aes(
+              x = long, y = lat, group = region,
+              fill = rank, color = "black"
+            )) +
+            coord_quickmap() +
+            guides(fill = F, color = F) +
+            scale_x_continuous(breaks = NULL, name = NULL) +
+            scale_y_continuous(breaks = NULL, name = NULL) +
+            labs(
+              title = "Team Rankings by State"
+            )
+      } else {
+        map <- left_join(reactive$injury, city_to_state, by = c("team.City" = "name"))
+        map <- left_join(us_map, map, by = c("region" = "state"))
+        reactive$map <- ggplot(map) +
+          geom_polygon(mapping = aes(
+            x = long, y = lat, group = region,
+            fill = has_injury, color = "black"
+          )) +
+          coord_quickmap() +
+          guides(fill = F, color = F) +
+          scale_x_continuous(breaks = NULL, name = NULL) +
+          scale_y_continuous(breaks = NULL, name = NULL) +
+          labs(
+            title = "Player Injuries by State"
+          )
+      }
+    })
+  
+  #============================================================================
   # Outputs
   #============================================================================
 
   output$positions <- renderText(reactive$positions)
   output$plot <- renderPlot(reactive$plot)
   output$q1_analysis <- renderText(paste(q1_analysis_1, reactive$injured_mean, q1_analysis_2))
+  output$map <- renderPlot(reactive$map)
 
 }
 
